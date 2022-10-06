@@ -255,7 +255,7 @@ class ILouvain():
         start_time = time.time()
 
         theta = 0.0001
-        alpha = 0.9
+        alpha = 0.5
 
         isFirstPass = True
 
@@ -294,27 +294,28 @@ class ILouvain():
                         (node2communityTemp, community2nodesTemp) = self.moveNodeToCommunity(node, nodeCommunity, neighCommunity, \
                                                             copy.deepcopy(community2nodes), copy.deepcopy(node2community))
 
-                        fullModularityGain = self.computeModularityGain(node, neighCommunity, graphAdjMatrix, community2nodesTemp) - \
+                        modularityGain = self.computeModularityGain(node, neighCommunity, graphAdjMatrix, community2nodesTemp) - \
                                              self.computeModularityGain(node, nodeCommunity, graphAdjMatrix, community2nodesTemp)
 
-                        # computeModularityGainInertia(self, node, community, distanceMatrix, node2Inertia, fullInertia)
                         modularityGainWithInertia = self.computeModularityGainInertia(node, neighCommunity, community2nodesTemp, distanceMatrix, node2Inertia, fullInertia) - \
                                                     self.computeModularityGainInertia(node, nodeCommunity, community2nodesTemp, distanceMatrix, node2Inertia, fullInertia)
+                        print('Modularity gain', modularityGain)
+                        print('Modularity gain intertia', modularityGainWithInertia)
 
-                        fullModularityGain = alpha * fullModularityGain + (1 - alpha) * modularityGainWithInertia
+                        fullModularityGain = alpha * modularityGain + (1 - alpha) * modularityGainWithInertia
 
                         # if modularity gain is positive, perform move
                         if (fullModularityGain > 0):
                             (node2community, community2nodes) = (node2communityTemp, community2nodesTemp)
 
-                newModularity = self.computeModularity(graphAdjMatrix, node2community) + self.computeModularityInertia(graphAdjMatrix, modularityMatrixInertia, node2community, fullInertia)
-
-                print(modularityFirstPhase, newModularity)
+                newModularity = self.computeModularity(graphAdjMatrix, node2community) + \
+                                self.computeModularityInertia(graphAdjMatrix, modularityMatrixInertia, node2community, fullInertia)
 
                 if (newModularity - modularityFirstPhase <= theta):
                     break
                 
                 modularityFirstPhase = newModularity
+                print(modularityFirstPhase, newModularity)
 
             print('Finished Louvain first phase')
 
@@ -338,14 +339,17 @@ class ILouvain():
             
             graphModularity = modularityFirstPhase
 
-            nodeId2Doc2Vec = self.computeNewNode2Doc2Vec(community2nodes, nodeId2Doc2Vec)
             (graphAdjMatrix, new2oldCommunities) = self.computeNewAdjMatrix(community2nodes, new2oldCommunities, graphAdjMatrix)
             nodes2communities = dict(zip(range(len(graphAdjMatrix[0])), range(len(graphAdjMatrix[0]))))
+
+            nodeId2Doc2Vec = self.computeNewNode2Doc2Vec(community2nodes, nodeId2Doc2Vec)
             (modularityMatrixInertia, distanceMatrix, node2Inertia, fullInertia) = self.computeModularityInertiaUtils(nodeId2Doc2Vec, graphAdjMatrix)
 
             (node2community, community2nodes) = self.initialize(nodes2communities)
 
             isFirstPass = False
+
+        print('!!! == Final modularity', graphModularity)
 
         print("--- %s execution time in seconds ---" % (time.time() - start_time))
 

@@ -261,11 +261,15 @@ def applyInertiaLouvain():
         nodes2communities = dict(zip(range(len(communityGraph.vs)), range(len(communityGraph.vs))))
         nodeId2Doc2Vec = dict(zip(range(len(communityGraph.vs)), communityGraph.vs['doc2vec']))
 
-        iLouvain.louvain(np.array(list(communityGraph.get_adjacency())), nodes2communities, nodeId2Doc2Vec)
+        nodes2communities = iLouvain.louvain(np.array(list(communityGraph.get_adjacency())), nodes2communities, nodeId2Doc2Vec)
 
         partition = VertexClustering(communityGraph, list(nodes2communities.values()))
 
         print('Real modularity:', partition.modularity)
+
+        plot(partition, collectionName + "inertia.png")
+
+        break
 
         # updateClusters(partition, collectionName, 'clusterIdILouvain')
 
