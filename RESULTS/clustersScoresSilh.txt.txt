@@ -1,0 +1,96 @@
+Clustering collection twelveHours_05_21_03_00_05_21_15_00
+Best noClusters is 3 with score 0.5610106014537685
+Clustering collection twelveHours_05_21_03_00_05_21_15_00 END ==
+Clustering collection twelveHours_05_21_15_00_05_22_03_00
+Best noClusters is 3 with score 0.5543531193466538
+Clustering collection twelveHours_05_21_15_00_05_22_03_00 END ==
+Clustering collection twelveHours_05_22_03_00_05_22_15_00
+Best noClusters is 2 with score 0.5958635121326735
+Clustering collection twelveHours_05_22_03_00_05_22_15_00 END ==
+Clustering collection twelveHours_05_22_15_00_05_23_03_00
+Best noClusters is 4 with score 0.5553998214056028
+Clustering collection twelveHours_05_22_15_00_05_23_03_00 END ==
+Clustering collection twelveHours_05_23_03_00_05_23_15_00
+Best noClusters is 4 with score 0.5826837055328363
+Clustering collection twelveHours_05_23_03_00_05_23_15_00 END ==
+Clustering collection twelveHours_05_23_15_00_05_24_03_00
+Best noClusters is 4 with score 0.5470527499405963
+Clustering collection twelveHours_05_23_15_00_05_24_03_00 END ==
+Clustering collection twelveHours_05_24_03_00_05_24_15_00
+Best noClusters is 3 with score 0.5389544933522322
+Clustering collection twelveHours_05_24_03_00_05_24_15_00 END ==
+Clustering collection twelveHours_05_24_15_00_05_25_03_00
+Best noClusters is 2 with score 0.5346303045516041
+Clustering collection twelveHours_05_24_15_00_05_25_03_00 END ==
+Clustering collection twelveHours_05_25_03_00_05_25_15_00
+Best noClusters is 3 with score 0.54397198247364
+Clustering collection twelveHours_05_25_03_00_05_25_15_00 END ==
+Clustering collection twelveHours_05_25_15_00_05_26_03_00
+Best noClusters is 2 with score 0.5673132613127195
+Clustering collection twelveHours_05_25_15_00_05_26_03_00 END ==
+Clustering collection twelveHours_05_26_03_00_05_26_15_00
+Best noClusters is 3 with score 0.5337721811846802
+Clustering collection twelveHours_05_26_03_00_05_26_15_00 END ==
+Clustering collection twelveHours_05_26_15_00_05_27_03_00
+Best noClusters is 3 with score 0.5528814109544089
+Clustering collection twelveHours_05_26_15_00_05_27_03_00 END ==
+Clustering collection twelveHours_05_27_03_00_05_27_15_00
+Best noClusters is 3 with score 0.5440648908406711
+Clustering collection twelveHours_05_27_03_00_05_27_15_00 END ==
+Clustering collection twelveHours_05_27_15_00_05_28_03_00
+Best noClusters is 3 with score 0.5743461934943725
+Clustering collection twelveHours_05_27_15_00_05_28_03_00 END ==
+Clustering collection twelveHours_05_28_03_00_05_28_15_00
+Best noClusters is 3 with score 0.561167673514898
+Clustering collection twelveHours_05_28_03_00_05_28_15_00 END ==
+Clustering collection twelveHours_05_28_15_00_05_29_03_00
+Best noClusters is 4 with score 0.559769926296774
+Clustering collection twelveHours_05_28_15_00_05_29_03_00 END ==
+Clustering collection twelveHours_05_29_03_00_05_29_15_00
+Best noClusters is 3 with score 0.5520787862792896
+Clustering collection twelveHours_05_29_03_00_05_29_15_00 END ==
+Clustering collection twelveHours_05_29_15_00_05_30_03_00
+Best noClusters is 3 with score 0.5446038499228729
+Clustering collection twelveHours_05_29_15_00_05_30_03_00 END ==
+Clustering collection twelveHours_05_30_03_00_05_30_15_00
+Best noClusters is 2 with score 0.5152791745827272
+Clustering collection twelveHours_05_30_03_00_05_30_15_00 END ==
+Clustering collection twelveHours_05_30_15_00_05_31_03_00
+Best noClusters is 2 with score 0.5508449410693631
+Clustering collection twelveHours_05_30_15_00_05_31_03_00 END ==
+Clustering collection twelveHours_05_31_03_00_05_31_15_00
+Best noClusters is 3 with score 0.5592746121423547
+Clustering collection twelveHours_05_31_03_00_05_31_15_00 END ==
+Clustering collection twelveHours_05_31_15_00_06_01_03_00
+Best noClusters is 3 with score 0.5356211526826558
+Clustering collection twelveHours_05_31_15_00_06_01_03_00 END ==
+Clustering collection twelveHours_06_01_03_00_06_01_15_00
+Best noClusters is 3 with score 0.5269365878274495
+Clustering collection twelveHours_06_01_03_00_06_01_15_00 END ==
+Clustering collection twelveHours_06_01_15_00_06_02_03_00
+Best noClusters is 3 with score 0.5726415390943963
+Clustering collection twelveHours_06_01_15_00_06_02_03_00 END ==
+Clustering collection twelveHours_06_02_03_00_06_02_15_00
+Best noClusters is 3 with score 0.5532777064282043
+Clustering collection twelveHours_06_02_03_00_06_02_15_00 END ==
+Clustering collection twelveHours_06_02_15_00_06_03_03_00
+Best noClusters is 3 with score 0.5569065903302418
+Clustering collection twelveHours_06_02_15_00_06_03_03_00 END ==
+Clustering collection twelveHours_06_03_03_00_06_03_15_00
+Best noClusters is 3 with score 0.5483027546939948
+Clustering collection twelveHours_06_03_03_00_06_03_15_00 END ==
+Clustering collection twelveHours_06_03_15_00_06_04_03_00
+Best noClusters is 3 with score 0.5254864641423445
+Clustering collection twelveHours_06_03_15_00_06_04_03_00 END ==
+Clustering collection twelveHours_06_04_03_00_06_04_15_00
+Best noClusters is 2 with score 0.5435704864195028
+Clustering collection twelveHours_06_04_03_00_06_04_15_00 END ==
+Clustering collection twelveHours_06_04_15_00_06_05_03_00
+Best noClusters is 4 with score 0.558065711100082
+Clustering collection twelveHours_06_04_15_00_06_05_03_00 END ==
+Clustering collection twelveHours_06_05_03_00_06_05_15_00
+Best noClusters is 4 with score 0.5469229680312229
+Clustering collection twelveHours_06_05_03_00_06_05_15_00 END ==
+Clustering collection twelveHours_06_05_15_00_06_06_03_00
+Best noClusters is 3 with score 0.5282750567591006
+Clustering collection twelveHours_06_05_15_00_06_06_03_00 END ==

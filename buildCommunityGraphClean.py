@@ -113,7 +113,7 @@ class BuildAuthorsCommunityGraph(CommunityGraphBuilder):
         nodesList = list(set(nodesList))
         nodesList = list(map(lambda x: self.genericAuthorName if x == False else x, nodesList))
 
-        attributes = {'doc2vec': list(map(lambda x: np.array(x['doc2vec']), self.dataset)), 'author': list(map(lambda x: np.array(x['author']), self.dataset))}
+        attributes = {'doc2vec': list(map(lambda x: np.array(x['doc2vec']), self.dataset)), 'author': list(map(lambda x: np.array(x['author']), self.dataset)), 'clusterIdKMeans': list(map(lambda x: np.array(x['clusterIdKMeans']), self.dataset))}
 
         return (attributes, nodesList)
 
@@ -175,17 +175,13 @@ class MongoDBClient:
             
         self.dbClient.close()
 
-def applyLouvainModule(collectionName, g):
+def applyLouvainModule(g):
 
     # and also show modularity
     clusters = g.community_multilevel()
     modularity_score = g.modularity(clusters.membership)
 
-    # plot(clusters)
-
-    print('The modularity is ', modularity_score)
-
-    # updateClusters(clusters, collectionName, 'clusterIdKnnEnhance')
+    return (clusters, modularity_score)
 
 def updateClusters(clusters, collectionName, attrName = 'clusterIdSimple'):
 
@@ -241,9 +237,14 @@ def applySimpleLouvain():
 
         print('===> Running Louvain on ', collectionName)
 
-        community = getCommentsCommunity(collectionName)
+        community = getCommentsCommunity(collectionName, False, False)
 
-        applyLouvainModule(collectionName, community.getGraph())
+        (clusters, modularity_score) = applyLouvainModule(community.getGraph())
+
+        # plot(clusters, collectionName + "simple.png")
+
+        print('The modularity is ', modularity_score)
+        updateClusters(clusters, collectionName, 'clusterIdSimple')
 
 def applyInertiaLouvain():
     
@@ -253,7 +254,7 @@ def applyInertiaLouvain():
 
         print('===> Running Inertia Louvain on ', collectionName)
 
-        community = getCommentsCommunity(collectionName)
+        community = getCommentsCommunity(collectionName, False, False)
         communityGraph = community.getGraph()
 
         iLouvain = ILouvain()
@@ -274,9 +275,59 @@ def applyKnnEnhance():
     for collectionName in allCollections:
         print('===> Running Louvain on ', collectionName)
 
-        community = getCommentsCommunity(collectionName, True)
+        community = getCommentsCommunity(collectionName, True, False)
 
-        applyLouvainModule(collectionName, community.getGraph())
+        (clusters, modularity_score) = applyLouvainModule(community.getGraph())
+
+        plot(clusters, collectionName + "knnEnhance.png")
+
+        print('The modularity is ', modularity_score)
+        # updateClusters(clusters, collectionName, 'clusterIdKnnEnhance')
+
+        break
+
+def applyClusterEnhance():
+
+    def sameTextCluster(cluster1, cluster2, graph):
+        kMeans1 = graph.vs[cluster1[0]]['clusterIdKMeans']
+        for nodeId in cluster1:
+            if graph.vs[nodeId]['clusterIdKMeans'] != kMeans1:
+                return False
+        for nodeId in cluster2:
+            if graph.vs[nodeId]['clusterIdKMeans'] != kMeans1:
+                return False
+        return True
+
+    allCollections = getAllCollections('twelveHours')
+
+    for collectionName in allCollections:
+        print('===> Running Louvain on ', collectionName)
+
+        community = getCommentsCommunity(collectionName, False, False)
+        graph = community.getGraph()
+
+        (clusters, modularity_score) = applyLouvainModule(graph)
+
+        edgesToAdd = []
+
+        for clusterId1 in range(len(clusters) - 1):
+            for clusterId2 in range(clusterId1 + 1, len(clusters)):
+                cluster1 = clusters[clusterId1]
+                cluster2 = clusters[clusterId2]
+                if (sameTextCluster(cluster1, cluster2, graph) == False):
+                    continue
+                for nodeIdCluster1 in cluster1:
+                    for nodeIdCluster2 in cluster2:
+                        edgesToAdd.append((graph.vs[nodeIdCluster1]['author'].tolist(), graph.vs[nodeIdCluster2]['author'].tolist()))
+
+        graph.add_edges(edgesToAdd)
+
+        (clusters, modularity_score) = applyLouvainModule(graph)
+        print('The modularity is ', modularity_score)
+
+        plot(clusters, collectionName + 'cluster_enhance.png')
+
+        break
 
 def plotCollection(collectionName, attributeField):
 
@@ -297,6 +348,7 @@ def getSharedAuthorsStats():
 
     return (min(commonAuthorsNr), sum(commonAuthorsNr)/len(commonAuthorsNr), max(commonAuthorsNr))
 
-applyKnnEnhance()
-# applyInertiaLouvain()
+# applyClusterEnhance()
+# applyKnnEnhance()
+applyInertiaLouvain()
 # applySimpleLouvain()
